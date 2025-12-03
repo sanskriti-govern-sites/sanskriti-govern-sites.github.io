@@ -1,1 +1,906 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Indian Government Services Portal</title> <link href="https://fonts.googleapis.com/css2?family=Tilt+Prism&family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Icons --> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <style> :root { --primary-grad: linear-gradient(90deg, #064663, #0a86b8); --glass-bg: rgba(255, 255, 255, 0.95); --card-hover: rgba(220, 245, 255, 0.98); --accent: #0a86b8; --text: #333; --font-base: 16px; } html, body { height: 100%; margin: 0; font-family: 'Inter', 'Poppins', sans-serif; color: var(--text); scroll-behavior: smooth; font-size: var(--font-base); } body { background: #000; overflow-x: hidden; } /* Vanta Background Layer */ #vanta-bg { position: fixed; top:0; left:0; width:100vw; height:100vh; z-index:0; } /* Main Wrapper */ #content-wrapper { position:relative; z-index:2; min-height:100vh; display:flex; flex-direction:column; } /* --- Accessibility Top Bar --- */ .top-bar { background: #022c3f; color: #fff; padding: 5px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.8em; border-bottom: 1px solid #0a4d6b; } .access-tools { display: flex; align-items: center; } .access-tools button { background: none; border: 1px solid #0a86b8; color: #fff; padding: 2px 8px; margin-left: 5px; cursor: pointer; border-radius: 4px; font-size: 0.9em; } .access-tools button:hover { background: #0a86b8; } /* --- Header --- */ header { background: var(--primary-grad); color: #fff; padding: 1.5em 5%; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative; } .header-logo { width: 70px; height: auto; border-radius: 5px; background: rgba(255,255,255,0.1); padding: 5px; } .header-center { flex: 1; text-align: center; } header h1 { font-family:'Tilt Prism', cursive; font-size: clamp(2em, 4vw, 3em); margin: 0; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); } header p { font-family:'Poppins', sans-serif; font-size: clamp(0.9em, 1.5vw, 1.1em); color:#d1f4ff; margin: 0.5em 0 0; } /* --- Main Layout --- */ .container { width: 95%; max-width: 1300px; margin: 2em auto; } /* Main Content Area */ main { width: 100%; } /* --- Search & Filters --- */ .controls-panel { background: var(--glass-bg); padding: 1.5em; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 2em; display: flex; flex-direction: column; gap: 15px; } .search-wrapper { position: relative; width: 100%; } .search-bar input { width: 100%; padding: 12px 45px 12px 15px; border-radius: 8px; border: 2px solid #ccc; outline: none; font-size: 1em; box-sizing: border-box; transition: 0.3s; } .search-bar input:focus { border-color: #0a86b8; box-shadow: 0 0 8px rgba(10,134,184,0.3); } .voice-btn { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.2em; color: #064663; cursor: pointer; } .voice-btn.listening { color: #d32f2f; animation: pulse 1s infinite; } @keyframes pulse { 0% { transform:translateY(-50%) scale(1); } 50% { transform:translateY(-50%) scale(1.2); } 100% { transform:translateY(-50%) scale(1); } } /* --- Cards --- */ .card-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; padding-bottom: 2em; } /* List View Override */ .card-container.list-view { grid-template-columns: 1fr; } .card-container.list-view .website-card { flex-direction: row; align-items: center; text-align: left; padding: 1em; min-height: auto; } .card-container.list-view .website-placeholder { margin-bottom: 0; margin-right: 1.5em; width: 50px; height: 50px; font-size: 1.2em; } .card-container.list-view .more-info { margin-top: 0; margin-left: auto; } .card-container.list-view .card-actions { position: static; margin-left: 15px; } .website-card { background: var(--glass-bg); border-radius: 12px; padding: 1.5em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 240px; position: relative; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border-top: 4px solid transparent; } .website-card:hover { background: var(--card-hover); transform: translateY(-5px); box-shadow: 0 12px 30px rgba(6,70,99,0.3); border-top: 4px solid #0a86b8; } .card-actions { position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; } .icon-btn { background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; color: #888; transition: 0.2s; display: flex; align-items: center; justify-content: center; } .icon-btn:hover { background: #fff; color: #0a86b8; transform: scale(1.1); } .icon-btn.liked { color: #e91e63; } .website-placeholder { width: 64px; height: 64px; margin-bottom: 1em; border-radius: 50%; background: #064663; display: flex; justify-content: center; align-items: center; color: #fff; font-size: 1.6em; font-weight: 700; border: 3px solid #ace4fd; transition: background 0.3s; } .website-title { color: #05445e; font-size: 1.25em; font-weight: bold; margin-bottom: 0.5em; text-decoration: none; } .website-title:hover { text-decoration: underline; color: #0a86b8; } .website-category { font-size: 0.75em; text-transform: uppercase; color: #666; letter-spacing: 1px; margin-bottom: 0.5em; background: #eee; padding: 2px 8px; border-radius: 4px; } .website-info { color: #333; font-size: 0.95em; flex-grow: 1; margin-bottom: 1.2em; line-height: 1.5; } .btn-group { display: flex; gap: 10px; margin-top: auto; } .more-info { color: #fff; background: #064663; border: none; padding: 0.6em 1.2em; font-size: 0.9em; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.3s; text-decoration: none; display: inline-block; } .more-info:hover { background: #0a658e; } .share-btn { background: #e0f7fa; color: #064663; } .share-btn:hover { background: #b2ebf2; } /* --- Footer --- */ footer { text-align: center; padding: 2em 0; color: #cfeff9; background: #021f2b; margin-top: auto; border-top: 4px solid #0a86b8; } .footer-links { margin-bottom: 1em; } .footer-links a { color: #8cd6f7; text-decoration: none; margin: 0 10px; transition: 0.2s; } .footer-links a:hover { color: #fff; text-decoration: underline; } /* Camouflaged Link Style */ .camouflaged-admin-link { color: #0d2838; /* Very dark blue, close to the footer background (#021f2b) */ font-size: 0.6em; text-decoration: none; cursor: pointer; margin-top: 5px; display: inline-block; transition: color 0.3s; } .camouflaged-admin-link:hover { color: #385973; /* Slightly lighter on hover to confirm it's interactive */ } /* --- Utilities --- */ #toTopBtn { position: fixed; bottom: 20px; right: 20px; z-index: 99; background: #0a86b8; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 1.5em; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; transition: 0.3s; } #toTopBtn.show { opacity: 1; pointer-events: auto; } .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 20px; z-index: 1000; opacity: 0; transition: 0.3s; font-size: 0.9em; pointer-events: none; } .toast.show { opacity: 1; bottom: 50px; } /* High Contrast Mode Override */ body.high-contrast { background: #000; color: #fff; } body.high-contrast #vanta-bg { opacity: 0.1; } body.high-contrast .website-card, body.high-contrast .widget, body.high-contrast .controls-panel { background: #111; border: 1px solid #fff; color: #fff; box-shadow: none; } body.high-contrast a, body.high-contrast h3, body.high-contrast .website-title { color: #ffff00; } body.high-contrast .pill { background: #000; border-color: #fff; color: #fff; } body.high-contrast .pill.active { background: #ffff00; color: #000; } /* Ensure camouflaged link is still visible in high contrast */ body.high-contrast .camouflaged-admin-link { color: #555; } /* --- ADMIN PANEL STYLES --- */ #admin-panel { background: var(--glass-bg); border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 2em; } #admin-panel h2 { color: #064663; border-bottom: 3px solid var(--accent); padding-bottom: 10px; margin-top: 0; margin-bottom: 20px; } #admin-main { display: flex; gap: 20px; } #admin-sidebar { width: 250px; padding-right: 20px; border-right: 1px solid #ddd; } .admin-nav button { display: block; width: 100%; padding: 10px; margin-bottom: 10px; background: #0a86b8; color: white; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-weight: 600; text-align: left; } .admin-nav button:hover { background: #0a658e; } .admin-nav button.active { background: #e91e63; } /* Admin Table */ .admin-table-wrapper { overflow-x: auto; } .admin-table { width: 100%; border-collapse: collapse; margin-top: 15px; } .admin-table th, .admin-table td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 0.9em; } .admin-table th { background-color: #f2f2f2; color: #064663; font-weight: 700; } .admin-table tr:nth-child(even) { background-color: #f9f9f9; } .admin-table tr:hover { background-color: #e6f7ff; } .admin-actions button { background: #0a86b8; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-right: 5px; } .admin-actions .delete-btn { background: #d32f2f; } .admin-actions button:hover { opacity: 0.8; } /* Admin Form */ .admin-form label { display: block; margin-top: 10px; font-weight: 600; color: #064663; } .admin-form input, .admin-form textarea, .admin-form select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; } .admin-form button { margin-top: 20px; padding: 10px 20px; font-size: 1em; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; background: #4caf50; color: white; transition: background 0.2s; } .admin-form button:hover { background: #43a047; } @media (max-width: 900px) { header { flex-direction: column; } .header-center { margin: 1em 0; } #admin-main { flex-direction: column; } #admin-sidebar { width: 100%; padding-right: 0; border-right: none; border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 20px; } .admin-nav button { text-align: center; } } </style> </head> <body> <!-- Background --> <div id="vanta-bg" aria-hidden="true"></div> <div id="content-wrapper"> <!-- Top Accessibility Bar (Admin Link Removed) --> <div class="top-bar"> <div id="live-datetime">Loading date...</div> <div class="access-tools"> <span id="lang-display">English</span> <button onclick="toggleLang()">文/A</button> <button onclick="resizeFont(-1)">A-</button> <button onclick="resizeFont(0)">A</button> <button onclick="resizeFont(1)">A+</button> <button onclick="toggleContrast()"><i class="fas fa-adjust"></i></button> <!-- The admin-link element has been removed from here --> </div> </div> <!-- Header --> <header> <img src="/emblem.png" alt="Indian Emblem" class="header-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg'"> <div class="header-center"> <h1 id="main-heading">Indian Government Websites</h1> <p id="sub-heading">Your Gateway to Digital Governance & Public Services</p> </div> <img src="/logo of my school.png" alt="School Logo" class="header-logo" onerror="this.style.opacity=0"> </header> <!-- Public Portal Content --> <div id="public-portal"> <div class="container"> <!-- Main Content --> <main> <div class="controls-panel"> <!-- Search --> <div class="search-bar search-wrapper"> <input type="text" id="search" placeholder="🔍 Search services, departments..." aria-label="Search"> <button class="voice-btn" id="voiceBtn" title="Search by voice"><i class="fas fa-microphone"></i></button> </div> </div> <!-- Cards Area --> <div class="card-container" id="list" role="list"></div> <div id="no-results" style="display:none; text-align:center; color:#fff; font-size:1.2em; padding:2em;">No websites found matching your criteria.</div> </main> </div> </div> <!-- Admin Panel Content (Initially Hidden) --> <div class="container" id="admin-view" style="display:none;"> <section id="admin-panel"> <h2><i class="fas fa-user-shield"></i> Portal Administration Panel</h2> <div id="admin-main"> <aside id="admin-sidebar" class="admin-nav"> <button id="viewListBtn" onclick="showAdminSection('list')"><i class="fas fa-list"></i> View All Websites</button> <button id="addNewBtn" onclick="openAdminForm()"><i class="fas fa-plus-circle"></i> Add New Website</button> <button onclick="toggleAdminView()"><i class="fas fa-sign-out-alt"></i> Exit Admin</button> </aside> <section id="admin-content"> <div id="admin-list-section"> <h3>Websites Management</h3> <div class="admin-table-wrapper"> <table class="admin-table"> <thead> <tr> <th>ID</th> <th>Name</th> <th>Category</th> <th>URL</th> <th>Actions</th> </tr> </thead> <tbody id="admin-list-body"> <!-- Website rows will be rendered here --> </tbody> </table> </div> </div> <div id="admin-form-section" style="display:none;"> <h3>Add/Edit Website</h3> <form id="website-form" class="admin-form" onsubmit="saveWebsite(event)"> <input type="hidden" id="site-id" name="id"> <label for="site-name">Website Name</label> <input type="text" id="site-name" name="name" required> <label for="site-url">URL</label> <input type="url" id="site-url" name="url" placeholder="https://" required> <label for="site-category">Category</label> <input type="text" id="site-category" name="category" placeholder="e.g., Finance, Education" required> <label for="site-info">Description</label> <textarea id="site-info" name="info" rows="3" required></textarea> <button type="submit" id="form-submit-btn">Save Website</button> <button type="button" onclick="showAdminSection('list')" style="background:#555; margin-left: 10px;">Cancel</button> </form> </div> </section> </div> </section> </div> <!-- Footer --> <footer> <div class="footer-links"> <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Accessibility</a> | <a href="#">Contact Us</a> </div> <div>© 2025 Government of India Portal Initiative. All Rights Reserved.</div> <div style="font-size:0.8em; color:#888; margin-top:10px;">Content owned by respective ministries.</div> <!-- Camouflaged Admin Access --> <div class="camouflaged-admin-link" onclick="toggleAdminView()" title="Portal Administration Access"> S.E.C.R.E.T. A.D.M.I.N. </div> <!-- End Camouflaged Admin Access --> </footer> </div> <button id="toTopBtn" title="Go to top">↑</button> <div id="toast" class="toast">Action Successful</div> <!-- Scripts --> <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script> <script> // --- Data Management (Initial Data & Persistence) --- // The key for localStorage const STORAGE_KEY = 'govWebsites'; // Initial default data if nothing is in localStorage const defaultWebsites = [ { id: 1, name: "Digital India", url: "https://www.digitalindia.gov.in/", category: "Governance", info: "Flagship programme transforming India into a digitally empowered society." }, { id: 2, name: "PM India", url: "https://www.pmindia.gov.in/", category: "Governance", info: "Official website of the Prime Minister; initiatives and news." }, { id: 3, name: "MyGov", url: "https://www.mygov.in/", category: "Citizen", info: "Citizen engagement platform for governance and development." }, { id: 4, name: "IRCTC / Railways", url: "https://www.irctc.co.in/", category: "Travel", info: "Train ticket booking, PNR status, and railway services." }, { id: 5, name: "Income Tax", url: "https://www.incometax.gov.in/", category: "Finance", info: "E-filing portal for Income Tax returns and PAN services." }, { id: 6, name: "UIDAI (Aadhaar)", url: "https://uidai.gov.in/", category: "Identity", info: "Aadhaar card download, update, and verification services." }, { id: 7, name: "Passport Seva", url: "https://www.passportindia.gov.in/", category: "Travel", info: "Apply for new passports, renewals, and track status." }, { id: 8, name: "National Scholarship", url: "https://scholarships.gov.in/", category: "Education", info: "One-stop solution for government scholarships." }, { id: 9, name: "Bharat BillPay", url: "https://www.bharatbillpay.com/", category: "Finance", info: "Integrated system for paying electricity, water, and gas bills." }, { id: 10, name: "DigiLocker", url: "https://digilocker.gov.in/", category: "Documents", info: "Cloud storage for digital documents like license, marksheets." }, { id: 11, name: "NREGA", url: "https://nrega.nic.in/", category: "Employment", info: "Mahatma Gandhi National Rural Employment Guarantee Act." }, { id: 12, name: "PMAY", url: "https://pmaymis.gov.in/", category: "Housing", info: "Housing for All initiative under Pradhan Mantri Awas Yojana." }, { id: 13, name: "Swachh Bharat", url: "https://swachhbharat.mygov.in/", category: "Health", info: "Clean India Mission initiative for sanitation and hygiene." }, { id: 14, name: "GeM Portal", url: "https://gem.gov.in/", category: "Business", info: "Government e-Marketplace for public procurement." }, { id: 15, name: "Parivahan", url: "https://parivahan.gov.in/", category: "Travel", info: "Driving License and Vehicle Registration services." }, { id: 16, name: "EPFO", url: "https://www.epfindia.gov.in/", category: "Finance", info: "Provident Fund management for employees." }, { id: 17, name: "Swayam", url: "https://swayam.gov.in/", category: "Education", info: "Free online courses and certification by the Govt of India." } ]; function loadWebsites() { const stored = localStorage.getItem(STORAGE_KEY); // Use a function to ensure IDs are numbers, just in case // Note: localStorage stores IDs as strings, so new test entries use Date.now() which is a number. // We ensure all IDs are treated as numbers here. return stored ? JSON.parse(stored).map(site => ({ ...site, id: Number(site.id) })) : defaultWebsites; } function saveWebsites(sites) { localStorage.setItem(STORAGE_KEY, JSON.stringify(sites)); websites = sites; // Update the global reference } let websites = loadWebsites(); // --- State & Config --- let favorites = JSON.parse(localStorage.getItem('govFavorites')) || []; let isHighContrast = false; let currentFontStep = 0; // -1, 0, 1 let isAdminLoggedIn = false; const list = document.getElementById('list'); const searchInput = document.getElementById('search'); const toast = document.getElementById('toast'); const publicPortal = document.getElementById('public-portal'); const adminView = document.getElementById('admin-view'); // --- Init --- function init() { renderList(); updateDateTime(); setInterval(updateDateTime, 1000); setupVanta(); } // --- Date Time --- function updateDateTime() { const now = new Date(); const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit', second:'2-digit' }; document.getElementById('live-datetime').textContent = now.toLocaleDateString('en-IN', options); } // --- Vanta Background --- function setupVanta() { try { if (window.VANTA) { VANTA.HALO({ el: '#vanta-bg', mouseControls: true, touchControls: true, gyroControls: false, baseColor: 0x064663, backgroundColor: 0x000000, minHeight: 200.00, minWidth: 200.00, amplitudeFactor: 0.6, size: 1 }); } } catch (e) { console.warn("Vanta Error", e); } } // --- Rendering (Public Portal) --- function renderList(searchQuery = '') { list.innerHTML = ''; let filtered = websites.filter(site => { const matchesSearch = site.name.toLowerCase().includes(searchQuery.toLowerCase()) || site.info.toLowerCase().includes(searchQuery.toLowerCase()); return matchesSearch; }); if (filtered.length === 0) { document.getElementById('no-results').style.display = 'block'; } else { document.getElementById('no-results').style.display = 'none'; filtered.forEach((site) => { const isFav = favorites.includes(site.id); const card = document.createElement('article'); card.className = 'website-card'; card.innerHTML = <div class="card-actions"> <button class="icon-btn ${isFav ? 'liked' : ''}" onclick="toggleFavorite(${site.id})" title="${isFav ? 'Remove Favorite' : 'Add to Favorites'}"> <i class="fas fa-heart"></i> </button> </div> <div class="website-placeholder">${site.name.charAt(0)}</div> <div class="website-category">${site.category}</div> <a href="${site.url}" target="_blank" class="website-title">${site.name}</a> <div class="website-info">${site.info}</div> <div class="btn-group"> <a href="${site.url}" target="_blank" class="more-info">Visit Portal</a> <button class="more-info share-btn" onclick="shareSite('${site.name}', '${site.url}')" title="Share"><i class="fas fa-share-alt"></i></button> </div> ; list.appendChild(card); }); } } // --- Admin Panel Functions --- window.toggleAdminView = () => { if (!isAdminLoggedIn) { // Updated Admin Password const newPassword = "67adminbrainrots"; const password = prompt("Enter Admin Password (Hint: " + newPassword + ")"); if (password === newPassword) { isAdminLoggedIn = true; showToast('Admin Logged In'); publicPortal.style.display = 'none'; adminView.style.display = 'block'; renderAdminTable(); } else if (password !== null) { showToast('Invalid Password'); } } else { isAdminLoggedIn = false; publicPortal.style.display = 'block'; adminView.style.display = 'none'; showToast('Admin Logged Out'); // Re-render the public list to show any changes made in admin mode renderList(searchInput.value); } }; window.renderAdminTable = () => { const tbody = document.getElementById('admin-list-body'); tbody.innerHTML = ''; websites.forEach(site => { const row = tbody.insertRow(); row.innerHTML = <td>${site.id}</td> <td>${site.name}</td> <td>${site.category}</td> <td><a href="${site.url}" target="_blank">${site.url.substring(0, 30)}...</a></td> <td class="admin-actions"> <button onclick="openAdminForm(${site.id})"><i class="fas fa-edit"></i> Edit</button> <button class="delete-btn" onclick="deleteWebsite(${site.id})"><i class="fas fa-trash"></i> Delete</button> </td> ; }); showAdminSection('list'); }; window.openAdminForm = (siteId) => { const form = document.getElementById('website-form'); form.reset(); document.getElementById('form-submit-btn').innerText = 'Add Website'; document.getElementById('form-submit-btn').style.background = '#4caf50'; if (siteId) { const site = websites.find(s => s.id === siteId); if (site) { document.getElementById('site-id').value = site.id; document.getElementById('site-name').value = site.name; document.getElementById('site-url').value = site.url; document.getElementById('site-category').value = site.category; document.getElementById('site-info').value = site.info; document.getElementById('form-submit-btn').innerText = 'Update Website'; document.getElementById('form-submit-btn').style.background = '#0a86b8'; } } else { document.getElementById('site-id').value = ''; // Ensure ID is empty for new entry } showAdminSection('form'); }; window.saveWebsite = (event) => { event.preventDefault(); const form = event.target; const formData = new FormData(form); const siteId = formData.get('id') ? Number(formData.get('id')) : null; const newSite = { id: siteId || Date.now(), // Use existing ID or generate a new unique one name: formData.get('name'), url: formData.get('url'), category: formData.get('category'), info: formData.get('info') }; let updatedWebsites; if (siteId) { // Update existing site updatedWebsites = websites.map(site => site.id === siteId ? newSite : site); showToast('Website Updated!'); } else { // Add new site updatedWebsites = [...websites, newSite]; showToast('Website Added!'); } saveWebsites(updatedWebsites); form.reset(); renderAdminTable(); // Show list view after saving }; window.deleteWebsite = (siteId) => { // IMPORTANT: Use a custom modal in a real app, but using confirm() for simplicity here if (!confirm('Are you sure you want to delete this website?')) return; const updatedWebsites = websites.filter(site => site.id !== siteId); saveWebsites(updatedWebsites); showToast('Website Deleted!'); renderAdminTable(); }; window.showAdminSection = (section) => { document.getElementById('admin-list-section').style.display = section === 'list' ? 'block' : 'none'; document.getElementById('admin-form-section').style.display = section === 'form' ? 'block' : 'none'; document.getElementById('viewListBtn').classList.toggle('active', section === 'list'); document.getElementById('addNewBtn').classList.toggle('active', section === 'form'); if (section === 'list') { renderAdminTable(); } }; // --- Public Portal Functionality --- // Search searchInput.addEventListener('input', e => renderList(e.target.value)); // Voice Search const voiceBtn = document.getElementById('voiceBtn'); if ('webkitSpeechRecognition' in window) { const recognition = new webkitSpeechRecognition(); recognition.continuous = false; recognition.lang = 'en-IN'; voiceBtn.onclick = () => { voiceBtn.classList.add('listening'); recognition.start(); }; recognition.onresult = (event) => { const transcript = event.results[0][0].transcript; searchInput.value = transcript; renderList(transcript); voiceBtn.classList.remove('listening'); }; recognition.onend = () => voiceBtn.classList.remove('listening'); } else { voiceBtn.style.display = 'none'; } // Favorites window.toggleFavorite = (id) => { if (favorites.includes(id)) { favorites = favorites.filter(favId => favId !== id); showToast('Removed from Favorites'); } else { favorites.push(id); showToast('Added to Favorites'); } localStorage.setItem('govFavorites', JSON.stringify(favorites)); // Re-render to update heart icons renderList(searchInput.value); }; window.filterByFavs = (e) => { e.preventDefault(); document.querySelectorAll('.pill').forEach(p => p.classList.remove('active')); list.innerHTML = ''; const favSites = websites.filter(site => favorites.includes(site.id)); if(favSites.length === 0) { list.innerHTML = '<div style="color:#fff; text-align:center; grid-column:1/-1; padding:2em;">No favorites added yet. Click the heart icon on cards to save them.</div>'; return; } favSites.forEach(site => { // Reuse render logic or simplify for this demo const card = document.createElement('article'); card.className = 'website-card'; card.innerHTML = <div class="card-actions"> <button class="icon-btn liked" onclick="toggleFavorite(${site.id})"><i class="fas fa-heart"></i></button> </div> <div class="website-placeholder">${site.name.charAt(0)}</div> <a href="${site.url}" target="_blank" class="website-title">${site.name}</a> <div class="website-info">${site.info}</div> <a href="${site.url}" target="_blank" class="more-info">Visit Portal</a> ; list.appendChild(card); }); }; // Share window.shareSite = (name, url) => { if (navigator.share) { navigator.share({ title: name, url: url }).catch(console.error); } else { // document.execCommand('copy') is generally preferred in this environment const tempInput = document.createElement('input'); tempInput.value = url; document.body.appendChild(tempInput); tempInput.select(); document.execCommand('copy'); document.body.removeChild(tempInput); showToast('Link copied to clipboard!'); } }; // Accessibility window.resizeFont = (step) => { const root = document.documentElement; let newSize = 16; if (step === 1) newSize = 18; if (step === -1) newSize = 14; root.style.setProperty('--font-base', newSize + 'px'); }; window.toggleContrast = () => { isHighContrast = !isHighContrast; document.body.classList.toggle('high-contrast'); }; window.toggleLang = () => { const btn = document.getElementById('lang-display'); if(btn.innerText === "English") { btn.innerText = "हिंदी"; document.getElementById('main-heading').innerText = "भारत सरकार की वेबसाइटें"; document.getElementById('sub-heading').innerText = "डिजिटल शासन और सार्वजनिक सेवाओं के लिए आपका द्वार"; document.getElementById('search').placeholder = "🔍 सेवाएँ खोजें..."; } else { btn.innerText = "English"; document.getElementById('main-heading').innerText = "Indian Government Websites"; document.getElementById('sub-heading').innerText = "Your Gateway to Digital Governance & Public Services"; document.getElementById('search').placeholder = "🔍 Search services, departments..."; } } // Utilities function showToast(msg) { toast.innerText = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); } // Scroll to Top const toTopBtn = document.getElementById('toTopBtn'); window.onscroll = () => { if (document.documentElement.scrollTop > 300) toTopBtn.classList.add('show'); else toTopBtn.classList.remove('show'); }; toTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' }); // Run init(); </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indian Government Services Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tilt+Prism&family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-grad: linear-gradient(90deg, #064663, #0a86b8);
+      --glass-bg: rgba(255, 255, 255, 0.95);
+      --card-hover: rgba(220, 245, 255, 0.98);
+      --accent: #0a86b8;
+      --text: #333;
+      --font-base: 16px;
+    }
+
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      font-family: 'Inter', 'Poppins', sans-serif; 
+      color: var(--text); 
+      scroll-behavior: smooth; 
+      font-size: var(--font-base);
+    }
+    
+    body { background: #000; overflow-x: hidden; }
+    
+    /* Vanta Background Layer */
+    #vanta-bg { position: fixed; top:0; left:0; width:100vw; height:100vh; z-index:0; }
+    
+    /* Main Wrapper */
+    #content-wrapper { position:relative; z-index:2; min-height:100vh; display:flex; flex-direction:column; }
+
+    /* --- Accessibility Top Bar --- */
+    .top-bar {
+      background: #022c3f;
+      color: #fff;
+      padding: 5px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8em;
+      border-bottom: 1px solid #0a4d6b;
+    }
+    .access-tools { display: flex; align-items: center; }
+    .access-tools button {
+      background: none;
+      border: 1px solid #0a86b8;
+      color: #fff;
+      padding: 2px 8px;
+      margin-left: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .access-tools button:hover { background: #0a86b8; }
+    
+    /* --- Header --- */
+    header {
+      background: var(--primary-grad);
+      color: #fff;
+      padding: 1.5em 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .header-logo { width: 70px; height: auto; border-radius: 5px; background: rgba(255,255,255,0.1); padding: 5px; }
+    .header-center { flex: 1; text-align: center; }
+    header h1 { 
+      font-family:'Tilt Prism', cursive; 
+      font-size: clamp(2em, 4vw, 3em); 
+      margin: 0; 
+      letter-spacing: 1px; 
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    header p { font-family:'Poppins', sans-serif; font-size: clamp(0.9em, 1.5vw, 1.1em); color:#d1f4ff; margin: 0.5em 0 0; }
+
+    /* --- Main Layout --- */
+    .container {
+      width: 95%;
+      max-width: 1300px;
+      margin: 2em auto;
+    }
+
+    /* Main Content Area */
+    main { width: 100%; }
+
+    /* --- Search & Filters --- */
+    .controls-panel {
+      background: var(--glass-bg);
+      padding: 1.5em;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 2em;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .search-wrapper { position: relative; width: 100%; }
+    .search-bar input {
+      width: 100%;
+      padding: 12px 45px 12px 15px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      outline: none;
+      font-size: 1em;
+      box-sizing: border-box;
+      transition: 0.3s;
+    }
+    .search-bar input:focus { border-color: #0a86b8; box-shadow: 0 0 8px rgba(10,134,184,0.3); }
+    .voice-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 1.2em;
+      color: #064663;
+      cursor: pointer;
+    }
+    .voice-btn.listening { color: #d32f2f; animation: pulse 1s infinite; }
+    @keyframes pulse { 0% { transform:translateY(-50%) scale(1); } 50% { transform:translateY(-50%) scale(1.2); } 100% { transform:translateY(-50%) scale(1); } }
+
+    /* --- Cards --- */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      padding-bottom: 2em;
+    }
+    
+    /* List View Override */
+    .card-container.list-view { grid-template-columns: 1fr; }
+    .card-container.list-view .website-card { 
+      flex-direction: row; 
+      align-items: center; 
+      text-align: left; 
+      padding: 1em; 
+      min-height: auto; 
+    }
+    .card-container.list-view .website-placeholder { margin-bottom: 0; margin-right: 1.5em; width: 50px; height: 50px; font-size: 1.2em; }
+    .card-container.list-view .more-info { margin-top: 0; margin-left: auto; }
+    .card-container.list-view .card-actions { position: static; margin-left: 15px; }
+
+    .website-card {
+      background: var(--glass-bg);
+      border-radius: 12px;
+      padding: 1.5em;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 240px;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border-top: 4px solid transparent;
+    }
+    .website-card:hover {
+      background: var(--card-hover);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(6,70,99,0.3);
+      border-top: 4px solid #0a86b8;
+    }
+
+    .card-actions {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 5px;
+    }
+    .icon-btn {
+      background: rgba(255,255,255,0.8);
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      color: #888;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-btn:hover { background: #fff; color: #0a86b8; transform: scale(1.1); }
+    .icon-btn.liked { color: #e91e63; }
+
+    .website-placeholder {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1em;
+      border-radius: 50%;
+      background: #064663;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 1.6em;
+      font-weight: 700;
+      border: 3px solid #ace4fd;
+      transition: background 0.3s;
+    }
+    
+    .website-title { color: #05445e; font-size: 1.25em; font-weight: bold; margin-bottom: 0.5em; text-decoration: none; }
+    .website-title:hover { text-decoration: underline; color: #0a86b8; }
+    .website-category { font-size: 0.75em; text-transform: uppercase; color: #666; letter-spacing: 1px; margin-bottom: 0.5em; background: #eee; padding: 2px 8px; border-radius: 4px; }
+    
+    .website-info { color: #333; font-size: 0.95em; flex-grow: 1; margin-bottom: 1.2em; line-height: 1.5; }
+    
+    .btn-group { display: flex; gap: 10px; margin-top: auto; }
+    .more-info {
+      color: #fff;
+      background: #064663;
+      border: none;
+      padding: 0.6em 1.2em;
+      font-size: 0.9em;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .more-info:hover { background: #0a658e; }
+    .share-btn { background: #e0f7fa; color: #064663; }
+    .share-btn:hover { background: #b2ebf2; }
+
+    /* --- Footer --- */
+    footer { text-align: center; padding: 2em 0; color: #cfeff9; background: #021f2b; margin-top: auto; border-top: 4px solid #0a86b8; }
+    .footer-links { margin-bottom: 1em; }
+    .footer-links a { color: #8cd6f7; text-decoration: none; margin: 0 10px; transition: 0.2s; }
+    .footer-links a:hover { color: #fff; text-decoration: underline; }
+
+    /* Camouflaged Link Style */
+    .camouflaged-admin-link {
+        color: #0d2838; /* Very dark blue, close to the footer background (#021f2b) */
+        font-size: 0.6em;
+        text-decoration: none;
+        cursor: pointer;
+        margin-top: 5px;
+        display: inline-block;
+        transition: color 0.3s;
+    }
+    .camouflaged-admin-link:hover {
+        color: #385973; /* Slightly lighter on hover to confirm it's interactive */
+    }
+
+    /* --- Utilities --- */
+    #toTopBtn { position: fixed; bottom: 20px; right: 20px; z-index: 99; background: #0a86b8; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 1.5em; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; transition: 0.3s; }
+    #toTopBtn.show { opacity: 1; pointer-events: auto; }
+    
+    .toast {
+      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 20px;
+      z-index: 1000; opacity: 0; transition: 0.3s; font-size: 0.9em; pointer-events: none;
+    }
+    .toast.show { opacity: 1; bottom: 50px; }
+
+    /* High Contrast Mode Override */
+    body.high-contrast { background: #000; color: #fff; }
+    body.high-contrast #vanta-bg { opacity: 0.1; }
+    body.high-contrast .website-card, body.high-contrast .widget, body.high-contrast .controls-panel { 
+      background: #111; border: 1px solid #fff; color: #fff; box-shadow: none; 
+    }
+    body.high-contrast a, body.high-contrast h3, body.high-contrast .website-title { color: #ffff00; }
+    body.high-contrast .pill { background: #000; border-color: #fff; color: #fff; }
+    body.high-contrast .pill.active { background: #ffff00; color: #000; }
+    /* Ensure camouflaged link is still visible in high contrast */
+    body.high-contrast .camouflaged-admin-link { color: #555; }
+
+
+    /* --- ADMIN PANEL STYLES --- */
+    #admin-panel {
+        background: var(--glass-bg);
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        margin-bottom: 2em;
+    }
+    #admin-panel h2 {
+        color: #064663;
+        border-bottom: 3px solid var(--accent);
+        padding-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+    #admin-main {
+        display: flex;
+        gap: 20px;
+    }
+    #admin-sidebar {
+        width: 250px;
+        padding-right: 20px;
+        border-right: 1px solid #ddd;
+    }
+    .admin-nav button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #0a86b8;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.2s;
+        font-weight: 600;
+        text-align: left;
+    }
+    .admin-nav button:hover { background: #0a658e; }
+    .admin-nav button.active { background: #e91e63; }
+
+    /* Admin Table */
+    .admin-table-wrapper { overflow-x: auto; }
+    .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    .admin-table th, .admin-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+        font-size: 0.9em;
+    }
+    .admin-table th {
+        background-color: #f2f2f2;
+        color: #064663;
+        font-weight: 700;
+    }
+    .admin-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .admin-table tr:hover { background-color: #e6f7ff; }
+    .admin-actions button {
+        background: #0a86b8;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+    .admin-actions .delete-btn { background: #d32f2f; }
+    .admin-actions button:hover { opacity: 0.8; }
+
+    /* Admin Form */
+    .admin-form label { display: block; margin-top: 10px; font-weight: 600; color: #064663; }
+    .admin-form input, .admin-form textarea, .admin-form select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+    .admin-form button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 1em;
+        font-weight: 700;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background: #4caf50;
+        color: white;
+        transition: background 0.2s;
+    }
+    .admin-form button:hover { background: #43a047; }
+    
+    @media (max-width: 900px) {
+      header { flex-direction: column; }
+      .header-center { margin: 1em 0; }
+      #admin-main { flex-direction: column; }
+      #admin-sidebar { width: 100%; padding-right: 0; border-right: none; border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 20px; }
+      .admin-nav button { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background -->
+  <div id="vanta-bg" aria-hidden="true"></div>
+
+  <div id="content-wrapper">
+    
+    <!-- Top Accessibility Bar (Admin Link Removed) -->
+    <div class="top-bar">
+      <div id="live-datetime">Loading date...</div>
+      <div class="access-tools">
+        <span id="lang-display">English</span>
+        <button onclick="toggleLang()">文/A</button>
+        <button onclick="resizeFont(-1)">A-</button>
+        <button onclick="resizeFont(0)">A</button>
+        <button onclick="resizeFont(1)">A+</button>
+        <button onclick="toggleContrast()"><i class="fas fa-adjust"></i></button>
+        <!-- The admin-link element has been removed from here -->
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <img src="/emblem.png" alt="Indian Emblem" class="header-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg'">
+      <div class="header-center">
+        <h1 id="main-heading">Indian Government Websites</h1>
+        <p id="sub-heading">Your Gateway to Digital Governance & Public Services</p>
+      </div>
+      <img src="/logo of my school.png" alt="School Logo" class="header-logo" onerror="this.style.opacity=0">
+    </header>
+
+    <!-- Public Portal Content -->
+    <div id="public-portal">
+      <div class="container">
+        
+        <!-- Main Content -->
+        <main>
+          <div class="controls-panel">
+            
+            <!-- Search -->
+            <div class="search-bar search-wrapper">
+              <input type="text" id="search" placeholder="🔍 Search services, departments..." aria-label="Search">
+              <button class="voice-btn" id="voiceBtn" title="Search by voice"><i class="fas fa-microphone"></i></button>
+            </div>
+
+          </div>
+
+          <!-- Cards Area -->
+          <div class="card-container" id="list" role="list"></div>
+          <div id="no-results" style="display:none; text-align:center; color:#fff; font-size:1.2em; padding:2em;">No websites found matching your criteria.</div>
+        </main>
+
+      </div>
+    </div>
+
+    <!-- Admin Panel Content (Initially Hidden) -->
+    <div class="container" id="admin-view" style="display:none;">
+      <section id="admin-panel">
+        <h2><i class="fas fa-user-shield"></i> Portal Administration Panel</h2>
+        
+        <div id="admin-main">
+          <aside id="admin-sidebar" class="admin-nav">
+            <button id="viewListBtn" onclick="showAdminSection('list')"><i class="fas fa-list"></i> View All Websites</button>
+            <button id="addNewBtn" onclick="openAdminForm()"><i class="fas fa-plus-circle"></i> Add New Website</button>
+            <button onclick="toggleAdminView()"><i class="fas fa-sign-out-alt"></i> Exit Admin</button>
+          </aside>
+
+          <section id="admin-content">
+            <div id="admin-list-section">
+              <h3>Websites Management</h3>
+              <div class="admin-table-wrapper">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Category</th>
+                      <th>URL</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-list-body">
+                    <!-- Website rows will be rendered here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div id="admin-form-section" style="display:none;">
+              <h3>Add/Edit Website</h3>
+              <form id="website-form" class="admin-form" onsubmit="saveWebsite(event)">
+                <input type="hidden" id="site-id" name="id">
+
+                <label for="site-name">Website Name</label>
+                <input type="text" id="site-name" name="name" required>
+
+                <label for="site-url">URL</label>
+                <input type="url" id="site-url" name="url" placeholder="https://" required>
+
+                <label for="site-category">Category</label>
+                <input type="text" id="site-category" name="category" placeholder="e.g., Finance, Education" required>
+
+                <label for="site-info">Description</label>
+                <textarea id="site-info" name="info" rows="3" required></textarea>
+
+                <button type="submit" id="form-submit-btn">Save Website</button>
+                <button type="button" onclick="showAdminSection('list')" style="background:#555; margin-left: 10px;">Cancel</button>
+              </form>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Terms of Use</a> | 
+        <a href="#">Accessibility</a> | 
+        <a href="#">Contact Us</a>
+      </div>
+      <div>© 2025 Government of India Portal Initiative. All Rights Reserved.</div>
+      <div style="font-size:0.8em; color:#888; margin-top:10px;">Content owned by respective ministries.</div>
+      <!-- Camouflaged Admin Access -->
+      <div class="camouflaged-admin-link" onclick="toggleAdminView()" title="Portal Administration Access">
+        S.E.C.R.E.T. A.D.M.I.N.
+      </div>
+      <!-- End Camouflaged Admin Access -->
+    </footer>
+  </div>
+
+  <button id="toTopBtn" title="Go to top">↑</button>
+  <div id="toast" class="toast">Action Successful</div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
+  
+  <script>
+    // --- Data Management (Initial Data & Persistence) ---
+    // The key for localStorage
+    const STORAGE_KEY = 'govWebsites';
+    
+    // Initial default data if nothing is in localStorage
+    const defaultWebsites = [
+      { id: 1, name: "Digital India", url: "https://www.digitalindia.gov.in/", category: "Governance", info: "Flagship programme transforming India into a digitally empowered society." },
+      { id: 2, name: "PM India", url: "https://www.pmindia.gov.in/", category: "Governance", info: "Official website of the Prime Minister; initiatives and news." },
+      { id: 3, name: "MyGov", url: "https://www.mygov.in/", category: "Citizen", info: "Citizen engagement platform for governance and development." },
+      { id: 4, name: "IRCTC / Railways", url: "https://www.irctc.co.in/", category: "Travel", info: "Train ticket booking, PNR status, and railway services." },
+      { id: 5, name: "Income Tax", url: "https://www.incometax.gov.in/", category: "Finance", info: "E-filing portal for Income Tax returns and PAN services." },
+      { id: 6, name: "UIDAI (Aadhaar)", url: "https://uidai.gov.in/", category: "Identity", info: "Aadhaar card download, update, and verification services." },
+      { id: 7, name: "Passport Seva", url: "https://www.passportindia.gov.in/", category: "Travel", info: "Apply for new passports, renewals, and track status." },
+      { id: 8, name: "National Scholarship", url: "https://scholarships.gov.in/", category: "Education", info: "One-stop solution for government scholarships." },
+      { id: 9, name: "Bharat BillPay", url: "https://www.bharatbillpay.com/", category: "Finance", info: "Integrated system for paying electricity, water, and gas bills." },
+      { id: 10, name: "DigiLocker", url: "https://digilocker.gov.in/", category: "Documents", info: "Cloud storage for digital documents like license, marksheets." },
+      { id: 11, name: "NREGA", url: "https://nrega.nic.in/", category: "Employment", info: "Mahatma Gandhi National Rural Employment Guarantee Act." },
+      { id: 12, name: "PMAY", url: "https://pmaymis.gov.in/", category: "Housing", info: "Housing for All initiative under Pradhan Mantri Awas Yojana." },
+      { id: 13, name: "Swachh Bharat", url: "https://swachhbharat.mygov.in/", category: "Health", info: "Clean India Mission initiative for sanitation and hygiene." },
+      { id: 14, name: "GeM Portal", url: "https://gem.gov.in/", category: "Business", info: "Government e-Marketplace for public procurement." },
+      { id: 15, name: "Parivahan", url: "https://parivahan.gov.in/", category: "Travel", info: "Driving License and Vehicle Registration services." },
+      { id: 16, name: "EPFO", url: "https://www.epfindia.gov.in/", category: "Finance", info: "Provident Fund management for employees." },
+      { id: 17, name: "Swayam", url: "https://swayam.gov.in/", category: "Education", info: "Free online courses and certification by the Govt of India." }
+    ];
+
+    function loadWebsites() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        // Use a function to ensure IDs are numbers, just in case
+        // Note: localStorage stores IDs as strings, so new test entries use Date.now() which is a number.
+        // We ensure all IDs are treated as numbers here.
+        return stored ? JSON.parse(stored).map(site => ({ ...site, id: Number(site.id) })) : defaultWebsites;
+    }
+
+    function saveWebsites(sites) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(sites));
+        websites = sites; // Update the global reference
+    }
+
+    let websites = loadWebsites();
+
+    // --- State & Config ---
+    let favorites = JSON.parse(localStorage.getItem('govFavorites')) || [];
+    let isHighContrast = false;
+    let currentFontStep = 0; // -1, 0, 1
+    let isAdminLoggedIn = false;
+    
+    const list = document.getElementById('list');
+    const searchInput = document.getElementById('search');
+    const toast = document.getElementById('toast');
+    const publicPortal = document.getElementById('public-portal');
+    const adminView = document.getElementById('admin-view');
+
+    // --- Init ---
+    function init() {
+      renderList();
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+      setupVanta();
+    }
+
+    // --- Date Time ---
+    function updateDateTime() {
+      const now = new Date();
+      const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit', second:'2-digit' };
+      document.getElementById('live-datetime').textContent = now.toLocaleDateString('en-IN', options);
+    }
+
+    // --- Vanta Background ---
+    function setupVanta() {
+      try {
+        if (window.VANTA) {
+          VANTA.HALO({
+            el: '#vanta-bg',
+            mouseControls: true, touchControls: true, gyroControls: false,
+            baseColor: 0x064663, backgroundColor: 0x000000,
+            minHeight: 200.00, minWidth: 200.00,
+            amplitudeFactor: 0.6, size: 1
+          });
+        }
+      } catch (e) { console.warn("Vanta Error", e); }
+    }
+
+    // --- Rendering (Public Portal) ---
+    
+    function renderList(searchQuery = '') {
+      list.innerHTML = '';
+      
+      let filtered = websites.filter(site => {
+        const matchesSearch = site.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                              site.info.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        document.getElementById('no-results').style.display = 'block';
+      } else {
+        document.getElementById('no-results').style.display = 'none';
+        filtered.forEach((site) => {
+          const isFav = favorites.includes(site.id);
+          const card = document.createElement('article');
+          card.className = 'website-card';
+          card.innerHTML = `
+            <div class="card-actions">
+              <button class="icon-btn ${isFav ? 'liked' : ''}" onclick="toggleFavorite(${site.id})" title="${isFav ? 'Remove Favorite' : 'Add to Favorites'}">
+                <i class="fas fa-heart"></i>
+              </button>
+            </div>
+            <div class="website-placeholder">${site.name.charAt(0)}</div>
+            <div class="website-category">${site.category}</div>
+            <a href="${site.url}" target="_blank" class="website-title">${site.name}</a>
+            <div class="website-info">${site.info}</div>
+            <div class="btn-group">
+              <a href="${site.url}" target="_blank" class="more-info">Visit Portal</a>
+              <button class="more-info share-btn" onclick="shareSite('${site.name}', '${site.url}')" title="Share"><i class="fas fa-share-alt"></i></button>
+            </div>
+          `;
+          list.appendChild(card);
+        });
+      }
+    }
+
+    // --- Admin Panel Functions ---
+    
+    window.toggleAdminView = () => {
+      if (!isAdminLoggedIn) {
+        // Updated Admin Password
+        const newPassword = "67adminbrainrots";
+        const password = prompt("Enter Admin Password (Hint: " + newPassword + ")"); 
+        
+        if (password === newPassword) {
+          isAdminLoggedIn = true;
+          showToast('Admin Logged In');
+          publicPortal.style.display = 'none';
+          adminView.style.display = 'block';
+          renderAdminTable();
+        } else if (password !== null) {
+          showToast('Invalid Password');
+        }
+      } else {
+        isAdminLoggedIn = false;
+        publicPortal.style.display = 'block';
+        adminView.style.display = 'none';
+        showToast('Admin Logged Out');
+        // Re-render the public list to show any changes made in admin mode
+        renderList(searchInput.value); 
+      }
+    };
+
+    window.renderAdminTable = () => {
+        const tbody = document.getElementById('admin-list-body');
+        tbody.innerHTML = '';
+        
+        websites.forEach(site => {
+            const row = tbody.insertRow();
+            row.innerHTML = `
+                <td>${site.id}</td>
+                <td>${site.name}</td>
+                <td>${site.category}</td>
+                <td><a href="${site.url}" target="_blank">${site.url.substring(0, 30)}...</a></td>
+                <td class="admin-actions">
+                    <button onclick="openAdminForm(${site.id})"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="delete-btn" onclick="deleteWebsite(${site.id})"><i class="fas fa-trash"></i> Delete</button>
+                </td>
+            `;
+        });
+        showAdminSection('list');
+    };
+
+    window.openAdminForm = (siteId) => {
+        const form = document.getElementById('website-form');
+        form.reset();
+        document.getElementById('form-submit-btn').innerText = 'Add Website';
+        document.getElementById('form-submit-btn').style.background = '#4caf50';
+
+        if (siteId) {
+            const site = websites.find(s => s.id === siteId);
+            if (site) {
+                document.getElementById('site-id').value = site.id;
+                document.getElementById('site-name').value = site.name;
+                document.getElementById('site-url').value = site.url;
+                document.getElementById('site-category').value = site.category;
+                document.getElementById('site-info').value = site.info;
+                document.getElementById('form-submit-btn').innerText = 'Update Website';
+                document.getElementById('form-submit-btn').style.background = '#0a86b8';
+            }
+        } else {
+            document.getElementById('site-id').value = ''; // Ensure ID is empty for new entry
+        }
+        showAdminSection('form');
+    };
+
+    window.saveWebsite = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const siteId = formData.get('id') ? Number(formData.get('id')) : null;
+
+        const newSite = {
+            id: siteId || Date.now(), // Use existing ID or generate a new unique one
+            name: formData.get('name'),
+            url: formData.get('url'),
+            category: formData.get('category'),
+            info: formData.get('info')
+        };
+
+        let updatedWebsites;
+        if (siteId) {
+            // Update existing site
+            updatedWebsites = websites.map(site => site.id === siteId ? newSite : site);
+            showToast('Website Updated!');
+        } else {
+            // Add new site
+            updatedWebsites = [...websites, newSite];
+            showToast('Website Added!');
+        }
+
+        saveWebsites(updatedWebsites);
+        form.reset();
+        renderAdminTable(); // Show list view after saving
+    };
+
+    window.deleteWebsite = (siteId) => {
+        // IMPORTANT: Use a custom modal in a real app, but using confirm() for simplicity here
+        if (!confirm('Are you sure you want to delete this website?')) return;
+
+        const updatedWebsites = websites.filter(site => site.id !== siteId);
+        saveWebsites(updatedWebsites);
+        showToast('Website Deleted!');
+        renderAdminTable();
+    };
+
+    window.showAdminSection = (section) => {
+        document.getElementById('admin-list-section').style.display = section === 'list' ? 'block' : 'none';
+        document.getElementById('admin-form-section').style.display = section === 'form' ? 'block' : 'none';
+        
+        document.getElementById('viewListBtn').classList.toggle('active', section === 'list');
+        document.getElementById('addNewBtn').classList.toggle('active', section === 'form');
+
+        if (section === 'list') {
+            renderAdminTable();
+        }
+    };
+
+    // --- Public Portal Functionality ---
+    
+    // Search
+    searchInput.addEventListener('input', e => renderList(e.target.value));
+
+    // Voice Search
+    const voiceBtn = document.getElementById('voiceBtn');
+    if ('webkitSpeechRecognition' in window) {
+      const recognition = new webkitSpeechRecognition();
+      recognition.continuous = false;
+      recognition.lang = 'en-IN';
+
+      voiceBtn.onclick = () => {
+        voiceBtn.classList.add('listening');
+        recognition.start();
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        searchInput.value = transcript;
+        renderList(transcript);
+        voiceBtn.classList.remove('listening');
+      };
+      recognition.onend = () => voiceBtn.classList.remove('listening');
+    } else {
+      voiceBtn.style.display = 'none';
+    }
+
+    // Favorites
+    window.toggleFavorite = (id) => {
+      if (favorites.includes(id)) {
+        favorites = favorites.filter(favId => favId !== id);
+        showToast('Removed from Favorites');
+      } else {
+        favorites.push(id);
+        showToast('Added to Favorites');
+      }
+      localStorage.setItem('govFavorites', JSON.stringify(favorites));
+      // Re-render to update heart icons
+      renderList(searchInput.value);
+    };
+
+    window.filterByFavs = (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      list.innerHTML = '';
+      
+      const favSites = websites.filter(site => favorites.includes(site.id));
+      
+      if(favSites.length === 0) {
+        list.innerHTML = '<div style="color:#fff; text-align:center; grid-column:1/-1; padding:2em;">No favorites added yet. Click the heart icon on cards to save them.</div>';
+        return;
+      }
+
+      favSites.forEach(site => {
+        // Reuse render logic or simplify for this demo
+        const card = document.createElement('article');
+        card.className = 'website-card';
+        card.innerHTML = `
+            <div class="card-actions">
+              <button class="icon-btn liked" onclick="toggleFavorite(${site.id})"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="website-placeholder">${site.name.charAt(0)}</div>
+            <a href="${site.url}" target="_blank" class="website-title">${site.name}</a>
+            <div class="website-info">${site.info}</div>
+            <a href="${site.url}" target="_blank" class="more-info">Visit Portal</a>
+        `;
+        list.appendChild(card);
+      });
+    };
+
+    // Share
+    window.shareSite = (name, url) => {
+      if (navigator.share) {
+        navigator.share({ title: name, url: url }).catch(console.error);
+      } else {
+        // document.execCommand('copy') is generally preferred in this environment
+        const tempInput = document.createElement('input');
+        tempInput.value = url;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        showToast('Link copied to clipboard!');
+      }
+    };
+
+    // Accessibility
+    window.resizeFont = (step) => {
+      const root = document.documentElement;
+      let newSize = 16;
+      if (step === 1) newSize = 18;
+      if (step === -1) newSize = 14;
+      root.style.setProperty('--font-base', newSize + 'px');
+    };
+
+    window.toggleContrast = () => {
+      isHighContrast = !isHighContrast;
+      document.body.classList.toggle('high-contrast');
+    };
+    
+    window.toggleLang = () => {
+      const btn = document.getElementById('lang-display');
+      if(btn.innerText === "English") {
+        btn.innerText = "हिंदी";
+        document.getElementById('main-heading').innerText = "भारत सरकार की वेबसाइटें";
+        document.getElementById('sub-heading').innerText = "डिजिटल शासन और सार्वजनिक सेवाओं के लिए आपका द्वार";
+        document.getElementById('search').placeholder = "🔍 सेवाएँ खोजें...";
+      } else {
+        btn.innerText = "English";
+        document.getElementById('main-heading').innerText = "Indian Government Websites";
+        document.getElementById('sub-heading').innerText = "Your Gateway to Digital Governance & Public Services";
+        document.getElementById('search').placeholder = "🔍 Search services, departments...";
+      }
+    }
+
+    // Utilities
+    function showToast(msg) {
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Scroll to Top
+    const toTopBtn = document.getElementById('toTopBtn');
+    window.onscroll = () => {
+      if (document.documentElement.scrollTop > 300) toTopBtn.classList.add('show');
+      else toTopBtn.classList.remove('show');
+    };
+    toTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Run
+    init();
+
+  </script>
+</body>
+</html><!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Indian Government Services Portal</title> <link href="https://fonts.googleapis.com/css2?family=Tilt+Prism&family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Icons --> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <style> :root { --primary-grad: linear-gradient(90deg, #064663, #0a86b8); --glass-bg: rgba(255, 255, 255, 0.95); --card-hover: rgba(220, 245, 255, 0.98); --accent: #0a86b8; --text: #333; --font-base: 16px; } html, body { height: 100%; margin: 0; font-family: 'Inter', 'Poppins', sans-serif; color: var(--text); scroll-behavior: smooth; font-size: var(--font-base); } body { background: #000; overflow-x: hidden; } /* Vanta Background Layer */ #vanta-bg { position: fixed; top:0; left:0; width:100vw; height:100vh; z-index:0; } /* Main Wrapper */ #content-wrapper { position:relative; z-index:2; min-height:100vh; display:flex; flex-direction:column; } /* --- Accessibility Top Bar --- */ .top-bar { background: #022c3f; color: #fff; padding: 5px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.8em; border-bottom: 1px solid #0a4d6b; } .access-tools { display: flex; align-items: center; } .access-tools button { background: none; border: 1px solid #0a86b8; color: #fff; padding: 2px 8px; margin-left: 5px; cursor: pointer; border-radius: 4px; font-size: 0.9em; } .access-tools button:hover { background: #0a86b8; } /* --- Header --- */ header { background: var(--primary-grad); color: #fff; padding: 1.5em 5%; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative; } .header-logo { width: 70px; height: auto; border-radius: 5px; background: rgba(255,255,255,0.1); padding: 5px; } .header-center { flex: 1; text-align: center; } header h1 { font-family:'Tilt Prism', cursive; font-size: clamp(2em, 4vw, 3em); margin: 0; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); } header p { font-family:'Poppins', sans-serif; font-size: clamp(0.9em, 1.5vw, 1.1em); color:#d1f4ff; margin: 0.5em 0 0; } /* --- Main Layout --- */ .container { width: 95%; max-width: 1300px; margin: 2em auto; } /* Main Content Area */ main { width: 100%; } /* --- Search & Filters --- */ .controls-panel { background: var(--glass-bg); padding: 1.5em; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 2em; display: flex; flex-direction: column; gap: 15px; } .search-wrapper { position: relative; width: 100%; } .search-bar input { width: 100%; padding: 12px 45px 12px 15px; border-radius: 8px; border: 2px solid #ccc; outline: none; font-size: 1em; box-sizing: border-box; transition: 0.3s; } .search-bar input:focus { border-color: #0a86b8; box-shadow: 0 0 8px rgba(10,134,184,0.3); } .voice-btn { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.2em; color: #064663; cursor: pointer; } .voice-btn.listening { color: #d32f2f; animation: pulse 1s infinite; } @keyframes pulse { 0% { transform:translateY(-50%) scale(1); } 50% { transform:translateY(-50%) scale(1.2); } 100% { transform:translateY(-50%) scale(1); } } /* --- Cards --- */ .card-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; padding-bottom: 2em; } /* List View Override */ .card-container.list-view { grid-template-columns: 1fr; } .card-container.list-view .website-card { flex-direction: row; align-items: center; text-align: left; padding: 1em; min-height: auto; } .card-container.list-view .website-placeholder { margin-bottom: 0; margin-right: 1.5em; width: 50px; height: 50px; font-size: 1.2em; } .card-container.list-view .more-info { margin-top: 0; margin-left: auto; } .card-container.list-view .card-actions { position: static; margin-left: 15px; } .website-card { background: var(--glass-bg); border-radius: 12px; padding: 1.5em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 240px; position: relative; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border-top: 4px solid transparent; } .website-card:hover { background: var(--card-hover); transform: translateY(-5px); box-shadow: 0 12px 30px rgba(6,70,99,0.3); border-top: 4px solid #0a86b8; } .card-actions { position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; } .icon-btn { background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; color: #888; transition: 0.2s; display: flex; align-items: center; justify-content: center; } .icon-btn:hover { background: #fff; color: #0a86b8; transform: scale(1.1); } .icon-btn.liked { color: #e91e63; } .website-placeholder { width: 64px; height: 64px; margin-bottom: 1em; border-radius: 50%; background: #064663; display: flex; justify-content: center; align-items: center; color: #fff; font-size: 1.6em; font-weight: 700; border: 3px solid #ace4fd; transition: background 0.3s; } .website-title { color: #05445e; font-size: 1.25em; font-weight: bold; margin-bottom: 0.5em; text-decoration: none; } .website-title:hover { text-decoration: underline; color: #0a86b8; } .website-category { font-size: 0.75em; text-transform: uppercase; color: #666; letter-spacing: 1px; margin-bottom: 0.5em; background: #eee; padding: 2px 8px; border-radius: 4px; } .website-info { color: #333; font-size: 0.95em; flex-grow: 1; margin-bottom: 1.2em; line-height: 1.5; } .btn-group { display: flex; gap: 10px; margin-top: auto; } .more-info { color: #fff; background: #064663; border: none; padding: 0.6em 1.2em; font-size: 0.9em; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.3s; text-decoration: none; display: inline-block; } .more-info:hover { background: #0a658e; } .share-btn { background: #e0f7fa; color: #064663; } .share-btn:hover { background: #b2ebf2; } /* --- Footer --- */ footer { text-align: center; padding: 2em 0; color: #cfeff9; background: #021f2b; margin-top: auto; border-top: 4px solid #0a86b8; } .footer-links { margin-bottom: 1em; } .footer-links a { color: #8cd6f7; text-decoration: none; margin: 0 10px; transition: 0.2s; } .footer-links a:hover { color: #fff; text-decoration: underline; } /* Camouflaged Link Style */ .camouflaged-admin-link { color: #0d2838; /* Very dark blue, close to the footer background (#021f2b) */ font-size: 0.6em; text-decoration: none; cursor: pointer; margin-top: 5px; display: inline-block; transition: color 0.3s; } .camouflaged-admin-link:hover { color: #385973; /* Slightly lighter on hover to confirm it's interactive */ } /* --- Utilities --- */ #toTopBtn { position: fixed; bottom: 20px; right: 20px; z-index: 99; background: #0a86b8; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 1.5em; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; transition: 0.3s; } #toTopBtn.show { opacity: 1; pointer-events: auto; } .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 20px; z-index: 1000; opacity: 0; transition: 0.3s; font-size: 0.9em; pointer-events: none; } .toast.show { opacity: 1; bottom: 50px; } /* High Contrast Mode Override */ body.high-contrast { background: #000; color: #fff; } body.high-contrast #vanta-bg { opacity: 0.1; } body.high-contrast .website-card, body.high-contrast .widget, body.high-contrast .controls-panel { background: #111; border: 1px solid #fff; color: #fff; box-shadow: none; } body.high-contrast a, body.high-contrast h3, body.high-contrast .website-title { color: #ffff00; } body.high-contrast .pill { background: #000; border-color: #fff; color: #fff; } body.high-contrast .pill.active { background: #ffff00; color: #000; } /* Ensure camouflaged link is still visible in high contrast */ body.high-contrast .camouflaged-admin-link { color: #555; } /* --- ADMIN PANEL STYLES --- */ #admin-panel { background: var(--glass-bg); border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 2em; } #admin-panel h2 { color: #064663; border-bottom: 3px solid var(--accent); padding-bottom: 10px; margin-top: 0; margin-bottom: 20px; } #admin-main { display: flex; gap: 20px; } #admin-sidebar { width: 250px; padding-right: 20px; border-right: 1px solid #ddd; } .admin-nav button { display: block; width: 100%; padding: 10px; margin-bottom: 10px; background: #0a86b8; color: white; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-weight: 600; text-align: left; } .admin-nav button:hover { background: #0a658e; } .admin-nav button.active { background: #e91e63; } /* Admin Table */ .admin-table-wrapper { overflow-x: auto; } .admin-table { width: 100%; border-collapse: collapse; margin-top: 15px; } .admin-table th, .admin-table td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 0.9em; } .admin-table th { background-color: #f2f2f2; color: #064663; font-weight: 700; } .admin-table tr:nth-child(even) { background-color: #f9f9f9; } .admin-table tr:hover { background-color: #e6f7ff; } .admin-actions button { background: #0a86b8; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-right: 5px; } .admin-actions .delete-btn { background: #d32f2f; } .admin-actions button:hover { opacity: 0.8; } /* Admin Form */ .admin-form label { display: block; margin-top: 10px; font-weight: 600; color: #064663; } .admin-form input, .admin-form textarea, .admin-form select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; } .admin-form button { margin-top: 20px; padding: 10px 20px; font-size: 1em; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; background: #4caf50; color: white; transition: background 0.2s; } .admin-form button:hover { background: #43a047; } @media (max-width: 900px) { header { flex-direction: column; } .header-center { margin: 1em 0; } #admin-main { flex-direction: column; } #admin-sidebar { width: 100%; padding-right: 0; border-right: none; border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 20px; } .admin-nav button { text-align: center; } } </style> </head> <body> <!-- Background --> <div id="vanta-bg" aria-hidden="true"></div> <div id="content-wrapper"> <!-- Top Accessibility Bar (Admin Link Removed) --> <div class="top-bar"> <div id="live-datetime">Loading date...</div> <div class="access-tools"> <span id="lang-display">English</span> <button onclick="toggleLang()">文/A</button> <button onclick="resizeFont(-1)">A-</button> <button onclick="resizeFont(0)">A</button> <button onclick="resizeFont(1)">A+</button> <button onclick="toggleContrast()"><i class="fas fa-adjust"></i></button> <!-- The admin-link element has been removed from here --> </div> </div> <!-- Header --> <header> <img src="/emblem.png" alt="Indian Emblem" class="header-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg'"> <div class="header-center"> <h1 id="main-heading">Indian Government Websites</h1> <p id="sub-heading">Your Gateway to Digital Governance & Public Services</p> </div> <img src="/logo of my school.png" alt="School Logo" class="header-logo" onerror="this.style.opacity=0"> </header> <!-- Public Portal Content --> <div id="public-portal"> <div class="container"> <!-- Main Content --> <main> <div class="controls-panel"> <!-- Search --> <div class="search-bar search-wrapper"> <input type="text" id="search" placeholder="🔍 Search services, departments..." aria-label="Search"> <button class="voice-btn" id="voiceBtn" title="Search by voice"><i class="fas fa-microphone"></i></button> </div> </div> <!-- Cards Area --> <div class="card-container" id="list" role="list"></div> <div id="no-results" style="display:none; text-align:center; color:#fff; font-size:1.2em; padding:2em;">No websites found matching your criteria.</div> </main> </div> </div> <!-- Admin Panel Content (Initially Hidden) --> <div class="container" id="admin-view" style="display:none;"> <section id="admin-panel"> <h2><i class="fas fa-user-shield"></i> Portal Administration Panel</h2> <div id="admin-main"> <aside id="admin-sidebar" class="admin-nav"> <button id="viewListBtn" onclick="showAdminSection('list')"><i class="fas fa-list"></i> View All Websites</button> <button id="addNewBtn" onclick="openAdminForm()"><i class="fas fa-plus-circle"></i> Add New Website</button> <button onclick="toggleAdminView()"><i class="fas fa-sign-out-alt"></i> Exit Admin</button> </aside> <section id="admin-content"> <div id="admin-list-section"> <h3>Websites Management</h3> <div class="admin-table-wrapper"> <table class="admin-table"> <thead> <tr> <th>ID</th> <th>Name</th> <th>Category</th> <th>URL</th> <th>Actions</th> </tr> </thead> <tbody id="admin-list-body"> <!-- Website rows will be rendered here --> </tbody> </table> </div> </div> <div id="admin-form-section" style="display:none;"> <h3>Add/Edit Website</h3> <form id="website-form" class="admin-form" onsubmit="saveWebsite(event)"> <input type="hidden" id="site-id" name="id"> <label for="site-name">Website Name</label> <input type="text" id="site-name" name="name" required> <label for="site-url">URL</label> <input type="url" id="site-url" name="url" placeholder="https://" required> <label for="site-category">Category</label> <input type="text" id="site-category" name="category" placeholder="e.g., Finance, Education" required> <label for="site-info">Description</label> <textarea id="site-info" name="info" rows="3" required></textarea> <button type="submit" id="form-submit-btn">Save Website</button> <button type="button" onclick="showAdminSection('list')" style="background:#555; margin-left: 10px;">Cancel</button> </form> </div> </section> </div> </section> </div> <!-- Footer --> <footer> <div class="footer-links"> <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Accessibility</a> | <a href="#">Contact Us</a> </div> <div>© 2025 Government of India Portal Initiative. All Rights Reserved.</div> <div style="font-size:0.8em; color:#888; margin-top:10px;">Content owned by respective ministries.</div> <!-- Camouflaged Admin Access --> <div class="camouflaged-admin-link" onclick="toggleAdminView()" title="Portal Administration Access"> S.E.C.R.E.T. A.D.M.I.N. </div> <!-- End Camouflaged Admin Access --> </footer> </div> <button id="toTopBtn" title="Go to top">↑</button> <div id="toast" class="toast">Action Successful</div> <!-- Scripts --> <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script> <script> // --- Data Management (Initial Data & Persistence) --- // The key for localStorage const STORAGE_KEY = 'govWebsites'; // Initial default data if nothing is in localStorage const defaultWebsites = [ { id: 1, name: "Digital India", url: "https://www.digitalindia.gov.in/", category: "Governance", info: "Flagship programme transforming India into a digitally empowered society." }, { id: 2, name: "PM India", url: "https://www.pmindia.gov.in/", category: "Governance", info: "Official website of the Prime Minister; initiatives and news." }, { id: 3, name: "MyGov", url: "https://www.mygov.in/", category: "Citizen", info: "Citizen engagement platform for governance and development." }, { id: 4, name: "IRCTC / Railways", url: "https://www.irctc.co.in/", category: "Travel", info: "Train ticket booking, PNR status, and railway services." }, { id: 5, name: "Income Tax", url: "https://www.incometax.gov.in/", category: "Finance", info: "E-filing portal for Income Tax returns and PAN services." }, { id: 6, name: "UIDAI (Aadhaar)", url: "https://uidai.gov.in/", category: "Identity", info: "Aadhaar card download, update, and verification services." }, { id: 7, name: "Passport Seva", url: "https://www.passportindia.gov.in/", category: "Travel", info: "Apply for new passports, renewals, and track status." }, { id: 8, name: "National Scholarship", url: "https://scholarships.gov.in/", category: "Education", info: "One-stop solution for government scholarships." }, { id: 9, name: "Bharat BillPay", url: "https://www.bharatbillpay.com/", category: "Finance", info: "Integrated system for paying electricity, water, and gas bills." }, { id: 10, name: "DigiLocker", url: "https://digilocker.gov.in/", category: "Documents", info: "Cloud storage for digital documents like license, marksheets." }, { id: 11, name: "NREGA", url: "https://nrega.nic.in/", category: "Employment", info: "Mahatma Gandhi National Rural Employment Guarantee Act." }, { id: 12, name: "PMAY", url: "https://pmaymis.gov.in/", category: "Housing", info: "Housing for All initiative under Pradhan Mantri Awas Yojana." }, { id: 13, name: "Swachh Bharat", url: "https://swachhbharat.mygov.in/", category: "Health", info: "Clean India Mission initiative for sanitation and hygiene." }, { id: 14, name: "GeM Portal", url: "https://gem.gov.in/", category: "Business", info: "Government e-Marketplace for public procurement." }, { id: 15, name: "Parivahan", url: "https://parivahan.gov.in/", category: "Travel", info: "Driving License and Vehicle Registration services." }, { id: 16, name: "EPFO", url: "https://www.epfindia.gov.in/", category: "Finance", info: "Provident Fund management for employees." }, { id: 17, name: "Swayam", url: "https://swayam.gov.in/", category: "Education", info: "Free online courses and certification by the Govt of India." } ]; function loadWebsites() { const stored = localStorage.getItem(STORAGE_KEY); // Use a function to ensure IDs are numbers, just in case // Note: localStorage stores IDs as strings, so new test entries use Date.now() which is a number. // We ensure all IDs are treated as numbers here. return stored ? JSON.parse(stored).map(site => ({ ...site, id: Number(site.id) })) : defaultWebsites; } function saveWebsites(sites) { localStorage.setItem(STORAGE_KEY, JSON.stringify(sites)); websites = sites; // Update the global reference } let websites = loadWebsites(); // --- State & Config --- let favorites = JSON.parse(localStorage.getItem('govFavorites')) || []; let isHighContrast = false; let currentFontStep = 0; // -1, 0, 1 let isAdminLoggedIn = false; const list = document.getElementById('list'); const searchInput = document.getElementById('search'); const toast = document.getElementById('toast'); const publicPortal = document.getElementById('public-portal'); const adminView = document.getElementById('admin-view'); // --- Init --- function init() { renderList(); updateDateTime(); setInterval(updateDateTime, 1000); setupVanta(); } // --- Date Time --- function updateDateTime() { const now = new Date(); const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit', second:'2-digit' }; document.getElementById('live-datetime').textContent = now.toLocaleDateString('en-IN', options); } // --- Vanta Background --- function setupVanta() { try { if (window.VANTA) { VANTA.HALO({ el: '#vanta-bg', mouseControls: true, touchControls: true, gyroControls: false, baseColor: 0x064663, backgroundColor: 0x000000, minHeight: 200.00, minWidth: 200.00, amplitudeFactor: 0.6, size: 1 }); } } catch (e) { console.warn("Vanta Error", e); } } // --- Rendering (Public Portal) --- function renderList(searchQuery = '') { list.innerHTML = ''; let filtered = websites.filter(site => { const matchesSearch = site.name.toLowerCase().includes(searchQuery.toLowerCase()) || site.info.toLowerCase().includes(searchQuery.toLowerCase()); return matchesSearch; }); if (filtered.length === 0) { document.getElementById('no-results').style.display = 'block'; } else { document.getElementById('no-results').style.display = 'none'; filtered.forEach((site) => { const isFav = favorites.includes(site.id); const card = document.createElement('article'); card.className = 'website-card'; card.innerHTML = <div class="card-actions"> <button class="icon-btn ${isFav ? 'liked' : ''}" onclick="toggleFavorite(${site.id})" title="${isFav ? 'Remove Favorite' : 'Add to Favorites'}"> <i class="fas fa-heart"></i> </button> </div> <div class="website-placeholder">${site.name.charAt(0)}</div> <div class="website-category">${site.category}</div> <a href="${site.url}" target="_blank" class="website-title">${site.name}</a> <div class="website-info">${site.info}</div> <div class="btn-group"> <a href="${site.url}" target="_blank" class="more-info">Visit Portal</a> <button class="more-info share-btn" onclick="shareSite('${site.name}', '${site.url}')" title="Share"><i class="fas fa-share-alt"></i></button> </div> ; list.appendChild(card); }); } } // --- Admin Panel Functions --- window.toggleAdminView = () => { if (!isAdminLoggedIn) { // Updated Admin Password const newPassword = "67adminbrainrots"; const password = prompt("Enter Admin Password (Hint: " + newPassword + ")"); if (password === newPassword) { isAdminLoggedIn = true; showToast('Admin Logged In'); publicPortal.style.display = 'none'; adminView.style.display = 'block'; renderAdminTable(); } else if (password !== null) { showToast('Invalid Password'); } } else { isAdminLoggedIn = false; publicPortal.style.display = 'block'; adminView.style.display = 'none'; showToast('Admin Logged Out'); // Re-render the public list to show any changes made in admin mode renderList(searchInput.value); } }; window.renderAdminTable = () => { const tbody = document.getElementById('admin-list-body'); tbody.innerHTML = ''; websites.forEach(site => { const row = tbody.insertRow(); row.innerHTML = <td>${site.id}</td> <td>${site.name}</td> <td>${site.category}</td> <td><a href="${site.url}" target="_blank">${site.url.substring(0, 30)}...</a></td> <td class="admin-actions"> <button onclick="openAdminForm(${site.id})"><i class="fas fa-edit"></i> Edit</button> <button class="delete-btn" onclick="deleteWebsite(${site.id})"><i class="fas fa-trash"></i> Delete</button> </td> ; }); showAdminSection('list'); }; window.openAdminForm = (siteId) => { const form = document.getElementById('website-form'); form.reset(); document.getElementById('form-submit-btn').innerText = 'Add Website'; document.getElementById('form-submit-btn').style.background = '#4caf50'; if (siteId) { const site = websites.find(s => s.id === siteId); if (site) { document.getElementById('site-id').value = site.id; document.getElementById('site-name').value = site.name; document.getElementById('site-url').value = site.url; document.getElementById('site-category').value = site.category; document.getElementById('site-info').value = site.info; document.getElementById('form-submit-btn').innerText = 'Update Website'; document.getElementById('form-submit-btn').style.background = '#0a86b8'; } } else { document.getElementById('site-id').value = ''; // Ensure ID is empty for new entry } showAdminSection('form'); }; window.saveWebsite = (event) => { event.preventDefault(); const form = event.target; const formData = new FormData(form); const siteId = formData.get('id') ? Number(formData.get('id')) : null; const newSite = { id: siteId || Date.now(), // Use existing ID or generate a new unique one name: formData.get('name'), url: formData.get('url'), category: formData.get('category'), info: formData.get('info') }; let updatedWebsites; if (siteId) { // Update existing site updatedWebsites = websites.map(site => site.id === siteId ? newSite : site); showToast('Website Updated!'); } else { // Add new site updatedWebsites = [...websites, newSite]; showToast('Website Added!'); } saveWebsites(updatedWebsites); form.reset(); renderAdminTable(); // Show list view after saving }; window.deleteWebsite = (siteId) => { // IMPORTANT: Use a custom modal in a real app, but using confirm() for simplicity here if (!confirm('Are you sure you want to delete this website?')) return; const updatedWebsites = websites.filter(site => site.id !== siteId); saveWebsites(updatedWebsites); showToast('Website Deleted!'); renderAdminTable(); }; window.showAdminSection = (section) => { document.getElementById('admin-list-section').style.display = section === 'list' ? 'block' : 'none'; document.getElementById('admin-form-section').style.display = section === 'form' ? 'block' : 'none'; document.getElementById('viewListBtn').classList.toggle('active', section === 'list'); document.getElementById('addNewBtn').classList.toggle('active', section === 'form'); if (section === 'list') { renderAdminTable(); } }; // --- Public Portal Functionality --- // Search searchInput.addEventListener('input', e => renderList(e.target.value)); // Voice Search const voiceBtn = document.getElementById('voiceBtn'); if ('webkitSpeechRecognition' in window) { const recognition = new webkitSpeechRecognition(); recognition.continuous = false; recognition.lang = 'en-IN'; voiceBtn.onclick = () => { voiceBtn.classList.add('listening'); recognition.start(); }; recognition.onresult = (event) => { const transcript = event.results[0][0].transcript; searchInput.value = transcript; renderList(transcript); voiceBtn.classList.remove('listening'); }; recognition.onend = () => voiceBtn.classList.remove('listening'); } else { voiceBtn.style.display = 'none'; } // Favorites window.toggleFavorite = (id) => { if (favorites.includes(id)) { favorites = favorites.filter(favId => favId !== id); showToast('Removed from Favorites'); } else { favorites.push(id); showToast('Added to Favorites'); } localStorage.setItem('govFavorites', JSON.stringify(favorites)); // Re-render to update heart icons renderList(searchInput.value); }; window.filterByFavs = (e) => { e.preventDefault(); document.querySelectorAll('.pill').forEach(p => p.classList.remove('active')); list.innerHTML = ''; const favSites = websites.filter(site => favorites.includes(site.id)); if(favSites.length === 0) { list.innerHTML = '<div style="color:#fff; text-align:center; grid-column:1/-1; padding:2em;">No favorites added yet. Click the heart icon on cards to save them.</div>'; return; } favSites.forEach(site => { // Reuse render logic or simplify for this demo const card = document.createElement('article'); card.className = 'website-card'; card.innerHTML = <div class="card-actions"> <button class="icon-btn liked" onclick="toggleFavorite(${site.id})"><i class="fas fa-heart"></i></button> </div> <div class="website-placeholder">${site.name.charAt(0)}</div> <a href="${site.url}" target="_blank" class="website-title">${site.name}</a> <div class="website-info">${site.info}</div> <a href="${site.url}" target="_blank" class="more-info">Visit Portal</a> ; list.appendChild(card); }); }; // Share window.shareSite = (name, url) => { if (navigator.share) { navigator.share({ title: name, url: url }).catch(console.error); } else { // document.execCommand('copy') is generally preferred in this environment const tempInput = document.createElement('input'); tempInput.value = url; document.body.appendChild(tempInput); tempInput.select(); document.execCommand('copy'); document.body.removeChild(tempInput); showToast('Link copied to clipboard!'); } }; // Accessibility window.resizeFont = (step) => { const root = document.documentElement; let newSize = 16; if (step === 1) newSize = 18; if (step === -1) newSize = 14; root.style.setProperty('--font-base', newSize + 'px'); }; window.toggleContrast = () => { isHighContrast = !isHighContrast; document.body.classList.toggle('high-contrast'); }; window.toggleLang = () => { const btn = document.getElementById('lang-display'); if(btn.innerText === "English") { btn.innerText = "हिंदी"; document.getElementById('main-heading').innerText = "भारत सरकार की वेबसाइटें"; document.getElementById('sub-heading').innerText = "डिजिटल शासन और सार्वजनिक सेवाओं के लिए आपका द्वार"; document.getElementById('search').placeholder = "🔍 सेवाएँ खोजें..."; } else { btn.innerText = "English"; document.getElementById('main-heading').innerText = "Indian Government Websites"; document.getElementById('sub-heading').innerText = "Your Gateway to Digital Governance & Public Services"; document.getElementById('search').placeholder = "🔍 Search services, departments..."; } } // Utilities function showToast(msg) { toast.innerText = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); } // Scroll to Top const toTopBtn = document.getElementById('toTopBtn'); window.onscroll = () => { if (document.documentElement.scrollTop > 300) toTopBtn.classList.add('show'); else toTopBtn.classList.remove('show'); }; toTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' }); // Run init(); </script> </body> </html>
